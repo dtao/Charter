@@ -1,7 +1,27 @@
+body {
+  margin: auto;
+  width: 75%; }
+
+input.title {
+  border: none;
+  border-bottom: 1px solid black;
+  display: block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 200%;
+  font-weight: 300;
+  margin: 10px auto 20px;
+  padding: 10px;
+  width: 80%; }
+  input.title.empty {
+    background-color: #eeffee; }
+  input.title:focus {
+    background-color: #ffffee; }
+
 table#data-table {
   border: 2px solid black;
   border-collapse: collapse;
-  margin: auto; }
+  margin: auto;
+  width: 80%; }
   table#data-table tr:nth-child(even) {
     background-color: #eeeeee; }
     table#data-table tr:nth-child(even) input {
@@ -23,4 +43,5 @@ table#data-table {
     border: 1px solid #eeeeee; }
   table#data-table input {
     border: none;
+    font-size: 125%;
     padding: 10px; }

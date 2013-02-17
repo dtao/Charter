@@ -1,7 +1,29 @@
+body
+  margin: auto
+  width: 75%
+
+input.title
+  border: none
+  border-bottom: 1px solid black
+  display: block
+  font-family: Helvetica, Arial, sans-serif
+  font-size: 200%
+  font-weight: 300
+  margin: 10px auto 20px
+  padding: 10px
+  width: 80%
+
+  &.empty
+    background-color: #efe
+
+  &:focus
+    background-color: #ffe
+
 table#data-table
   border: 2px solid #000
   border-collapse: collapse
   margin: auto
+  width: 80%
 
   tr
     &:nth-child(even)
@@ -29,4 +51,5 @@ table#data-table
 
   input
     border: none
+    font-size: 125%
     padding: 10px

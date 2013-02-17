@@ -9,9 +9,11 @@
 
 %body
   %section.chart-section
-    #rendered-chart.line-chart(data-source="#data-table")
+    #rendered-chart.line-chart(data-source="#data-table" data-options="getChartOptions")
 
   %section.table-section
+    = text_field_tag(:title, :class => "title empty", :placeholder => "Enter chart title")
+
     %table#data-table
       %tr
         - 4.times do
