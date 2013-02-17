@@ -1,0 +1,26 @@
+table#data-table {
+  border: 2px solid black;
+  border-collapse: collapse;
+  margin: auto; }
+  table#data-table tr:nth-child(even) {
+    background-color: #eeeeee; }
+    table#data-table tr:nth-child(even) input {
+      background-color: #eeeeee; }
+  table#data-table tr:hover {
+    background-color: #ffffee; }
+    table#data-table tr:hover input {
+      background-color: #ffffee; }
+      table#data-table tr:hover input:hover {
+        background-color: #eeffff; }
+  table#data-table tr:first-child {
+    background-color: white; }
+    table#data-table tr:first-child th, table#data-table tr:first-child td {
+      border-bottom: 1px solid black; }
+    table#data-table tr:first-child input {
+      background-color: white;
+      font-weight: bold; }
+  table#data-table th, table#data-table td {
+    border: 1px solid #eeeeee; }
+  table#data-table input {
+    border: none;
+    padding: 10px; }

@@ -1,0 +1,32 @@
+table#data-table
+  border: 2px solid #000
+  border-collapse: collapse
+  margin: auto
+
+  tr
+    &:nth-child(even)
+      background-color: #eee
+      input
+        background-color: #eee
+
+    &:hover
+      background-color: #ffe
+      input
+        background-color: #ffe
+        &:hover
+          background-color: #eff
+
+    &:first-child
+      background-color: #fff
+      th, td
+        border-bottom: 1px solid black
+      input
+        background-color: #fff
+        font-weight: bold
+
+  th, td
+    border: 1px solid #eee
+
+  input
+    border: none
+    padding: 10px
