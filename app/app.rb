@@ -4,6 +4,10 @@ class ChartMaker < Padrino::Application
   register Padrino::Mailer
   register Padrino::Helpers
 
+  configure :development do
+    set :show_exceptions, false
+  end
+
   get "/" do
     @chart = Chart.new
     render(:index)
@@ -30,5 +34,10 @@ class ChartMaker < Padrino::Application
     flash[:notice] = "Created chart '#{chart.title}'"
 
     redirect(chart.path)
+  end
+
+  error do
+    flash[:notice] = "#{env['sinatra.error'].try(:message)}"
+    redirect("/")
   end
 end

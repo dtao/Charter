@@ -36,3 +36,8 @@
               %td <input type="text" />
 
       = submit_tag("Save", :id => "save-button")
+
+  - if flash[:notice]
+    %section.notices
+      .notice= flash[:notice]
+      %a.dismiss(href="javascript:void(0);") OK

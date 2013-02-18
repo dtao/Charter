@@ -104,3 +104,31 @@ input#save-button {
   input#save-button:active {
     background-color: #eeffee;
     border-color: black; }
+
+.notices {
+  position: fixed;
+  top: 25%;
+  bottom: 25%;
+  left: 25%;
+  right: 25%;
+  background-color: white;
+  border: 3px solid black;
+  font-family: Helvetica, Arial, sans-serif;
+  padding: 10px; }
+  .notices .notice {
+    color: #880000;
+    font-size: 200%;
+    font-weight: bold; }
+  .notices .dismiss {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #eeeeee;
+    color: black;
+    display: inline-block;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    width: 60px; }
+    .notices .dismiss:hover {
+      color: #00bb00; }
