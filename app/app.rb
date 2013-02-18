@@ -37,13 +37,11 @@ class ChartMaker < Padrino::Application
       :data        => params["table-data"]
     })
 
-    flash[:notice] = "Created chart '#{chart.title}'"
-
     redirect(chart.path)
   end
 
   error do
-    flash[:notice] = "#{env['sinatra.error'].try(:message)}"
+    flash[:notice] = env["sinatra.error"].try(:message) || "An unexpected error occurred."
     redirect("/")
   end
 end
