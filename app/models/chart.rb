@@ -30,6 +30,10 @@ class Chart
     self.data.try(:strip!)
   end
 
+  def url
+    "http://#{PADRINO_HOST}" + self.path
+  end
+
   def embed_url
     "http://#{PADRINO_HOST}/embed/#{self.token}"
   end
