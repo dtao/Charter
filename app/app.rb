@@ -18,6 +18,11 @@ class ChartMaker < Padrino::Application
     render(:index)
   end
 
+  get "/embed/:token" do |token|
+    @chart = Chart.first(:token => token)
+    render(:embed, :layout => false)
+  end
+
   get "/:token/:title" do |token, title|
     @chart = Chart.first(:token => token)
     @title = @chart.title

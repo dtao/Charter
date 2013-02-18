@@ -1,0 +1,13 @@
+.caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: black;
+  color: white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  opacity: 0.5;
+  padding: 10px;
+  text-align: center; }

@@ -8,4 +8,9 @@
   = haml(:table, :layout => false)
 
 %section.details
-  %p.description= markdown(@chart.description)
+  .description= markdown(@chart.description)
+
+  %p Want to embed this chart?
+  %textarea
+    :preserve
+      <iframe src="#{@chart.embed_url}" />
