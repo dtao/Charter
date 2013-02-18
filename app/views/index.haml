@@ -1,5 +1,5 @@
 - content_for :javascripts do
-  = javascript_include_tag("application")
+  = javascript_include_tag("edit")
 
 %section.chart-section
   #rendered-chart(class="#{@chart.chart_type || 'line'}-chart" data-source="#data-table" data-options="getChartOptions")
