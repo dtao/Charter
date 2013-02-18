@@ -23,7 +23,7 @@ class Chart
   end
 
   def path
-    "/#{self.token}/#{self.title.parameterize}"
+    "/#{self.token}/#{self.title.gsub(/[^ a-z0-9]/i, '').parameterize}"
   end
 
   def parsed_data
