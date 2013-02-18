@@ -6,6 +6,25 @@ $(document).ready(function() {
     HighTables.LineChart.renderTo(chart);
   }
 
+  function selectCellAdjacent(input, rowOffset) {
+    var $input = $(input);
+    var $cell  = $input.closest("td, th");
+    var $row   = $cell.closest("tr");
+    var $table = $row.closest("table");
+
+    var lowerRow  = $("tr", $table)[$row.index() + rowOffset];
+    var lowerCell = $("td, th", $(lowerRow))[$cell.index()];
+    $(lowerCell).find("input").select();
+  }
+
+  function selectCellAbove(input) {
+    selectCellAdjacent(input, -1);
+  }
+
+  function selectCellBelow(input) {
+    selectCellAdjacent(input, 1);
+  }
+
   $("input", "#data-table").change(renderChart);
 
   $("input.title").change(function() {
@@ -16,6 +35,21 @@ $(document).ready(function() {
     }
 
     renderChart();
+  });
+
+  $("input").focus(function() {
+    $(this).select();
+  });
+
+  $("input").keydown(function(e) {
+    switch (e.keyCode) {
+    case 38:
+      selectCellAbove(this);
+      break;
+    case 40:
+      selectCellBelow(this);
+      break;
+    }
   });
 
   window.getChartOptions = function() {
