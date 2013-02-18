@@ -5,6 +5,15 @@ class ChartMaker < Padrino::Application
   register Padrino::Helpers
 
   get :index do
+    @chart_types = {
+      "Line"     => "line",
+      "Smoothed" => "spline",
+      "Area"     => "area",
+      "Stack"    => "stack",
+      "Bar"      => "bar",
+      "Column"   => "column",
+      "Pie"      => "pie"
+    }
     render :index
   end
 end

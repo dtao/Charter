@@ -1,56 +1,98 @@
+$blue:   #eff
+$yellow: #ffe
+$green:  #efe
+$gray:   #eee
+
 body
+  margin: auto
+  width: 75%
+
+form#data-form
+  font-family: Helvetica, Arial, sans-serif
   margin: auto
   width: 75%
 
 input.title
   border: none
   border-bottom: 1px solid black
+  box-sizing: border-box
   display: block
   font-family: Helvetica, Arial, sans-serif
   font-size: 200%
   font-weight: 300
-  margin: 10px auto 20px
+  margin-bottom: 20px
   padding: 10px
-  width: 80%
+  width: 100%
 
   &.empty
-    background-color: #efe
+    background-color: $blue
+
+  &:hover
+    background-color: $green
 
   &:focus
-    background-color: #ffe
+    background-color: $yellow
+
+.chart-type-field
+  margin-bottom: 20px
 
 table#data-table
-  border: 2px solid #000
+  border: 2px solid black
   border-collapse: collapse
-  margin: auto
-  width: 80%
+  box-sizing: border-box
+  margin-bottom: 20px
+  width: 100%
 
   tr
     &:nth-child(even)
-      background-color: #eee
+      background-color: $gray
       input
-        background-color: #eee
+        background-color: $gray
 
     &:hover
-      background-color: #ffe
+      background-color: $yellow
       input
-        background-color: #ffe
+        background-color: $yellow
 
     &:first-child
-      background-color: #fff
+      background-color: white
       th, td
         border-bottom: 1px solid black
       input
-        background-color: #fff
+        background-color: white
         font-weight: bold
+      &:hover
+        background-color: $green
+        input
+          background-color: $green
 
     input:focus
-      background-color: #eff
+      background-color: $blue
 
   th, td
-    border: 1px solid #eee
+    border: 1px solid $gray
+    text-align: left
 
   input
     border: none
+    box-sizing: border-box
     font-size: 125%
     padding: 10px
+    width: 100%
+
+input#save-button
+  background-color: darken($gray, 25%)
+  border: 2px solid white
+  cursor: pointer
+  display: inline-block
+  font-size: 125%
+  padding: 10px
+  width: 100px
+
+  &:hover
+    background-color: $blue
+    border-color: black
+
+  &:active
+    background-color: $green
+    border-color: black

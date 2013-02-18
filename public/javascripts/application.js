@@ -1,31 +1,52 @@
 $(document).ready(function() {
-  var chart = document.getElementById("rendered-chart");
+  var chart  = document.getElementById("rendered-chart");
   var $title = $("input.title");
+  var $type  = $("#chart-type");
+  var $table = $("#data-table");
+  var $save  = $("#save-button");
 
   function renderChart() {
-    HighTables.LineChart.renderTo(chart);
+    var chartType = $type.val();
+    var engine = null;
+
+    // TODO: This logic really belongs in HighTables.
+    switch (chartType) {
+      case "line":
+      case "spline":
+      case "area":
+      case "stack":
+        engine = HighTables.LineChart;
+        break;
+      case "bar":
+      case "column":
+        engine = HighTables.BarChart;
+        break;
+      case "pie":
+        engine = HighTables.PieChart;
+        break;
+    }
+
+    engine.renderTo(chart);
   }
 
-  function selectCellAdjacent(input, rowOffset) {
+  function selectNeighborCell(input, rowOffset) {
     var $input = $(input);
     var $cell  = $input.closest("td, th");
     var $row   = $cell.closest("tr");
     var $table = $row.closest("table");
 
-    var lowerRow  = $("tr", $table)[$row.index() + rowOffset];
-    var lowerCell = $("td, th", $(lowerRow))[$cell.index()];
-    $(lowerCell).find("input").select();
+    var adjacentRow  = $("tr", $table)[$row.index() + rowOffset];
+    var neighborCell = $("td, th", $(adjacentRow))[$cell.index()];
+    $(neighborCell).find("input").select();
   }
 
   function selectCellAbove(input) {
-    selectCellAdjacent(input, -1);
+    selectNeighborCell(input, -1);
   }
 
   function selectCellBelow(input) {
-    selectCellAdjacent(input, 1);
+    selectNeighborCell(input, 1);
   }
-
-  $("input", "#data-table").change(renderChart);
 
   $("input.title").change(function() {
     if ($.trim($title.val()) === "") {
@@ -37,11 +58,19 @@ $(document).ready(function() {
     renderChart();
   });
 
-  $("input").focus(function() {
+  $type.change(function() {
+    var chartType = $type.val();
+    $(chart).attr("class", "").addClass(chartType + "-chart");
+    renderChart();
+  });
+
+  $table.delegate("input", "change", renderChart);
+
+  $table.delegate("input", "focus", function() {
     $(this).select();
   });
 
-  $("input").keydown(function(e) {
+  $table.delegate("input", "keydown", function(e) {
     switch (e.keyCode) {
     case 38:
       selectCellAbove(this);
@@ -50,6 +79,9 @@ $(document).ready(function() {
       selectCellBelow(this);
       break;
     }
+  });
+
+  $save.click(function() {
   });
 
   window.getChartOptions = function() {

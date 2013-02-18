@@ -2,26 +2,38 @@ body {
   margin: auto;
   width: 75%; }
 
+form#data-form {
+  font-family: Helvetica, Arial, sans-serif;
+  margin: auto;
+  width: 75%; }
+
 input.title {
   border: none;
   border-bottom: 1px solid black;
+  box-sizing: border-box;
   display: block;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 200%;
   font-weight: 300;
-  margin: 10px auto 20px;
+  margin-bottom: 20px;
   padding: 10px;
-  width: 80%; }
+  width: 100%; }
   input.title.empty {
+    background-color: #eeffff; }
+  input.title:hover {
     background-color: #eeffee; }
   input.title:focus {
     background-color: #ffffee; }
 
+.chart-type-field {
+  margin-bottom: 20px; }
+
 table#data-table {
   border: 2px solid black;
   border-collapse: collapse;
-  margin: auto;
-  width: 80%; }
+  box-sizing: border-box;
+  margin-bottom: 20px;
+  width: 100%; }
   table#data-table tr:nth-child(even) {
     background-color: #eeeeee; }
     table#data-table tr:nth-child(even) input {
@@ -37,11 +49,33 @@ table#data-table {
     table#data-table tr:first-child input {
       background-color: white;
       font-weight: bold; }
+    table#data-table tr:first-child:hover {
+      background-color: #eeffee; }
+      table#data-table tr:first-child:hover input {
+        background-color: #eeffee; }
   table#data-table tr input:focus {
     background-color: #eeffff; }
   table#data-table th, table#data-table td {
-    border: 1px solid #eeeeee; }
+    border: 1px solid #eeeeee;
+    text-align: left; }
   table#data-table input {
     border: none;
+    box-sizing: border-box;
     font-size: 125%;
-    padding: 10px; }
+    padding: 10px;
+    width: 100%; }
+
+input#save-button {
+  background-color: #aeaeae;
+  border: 2px solid white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 125%;
+  padding: 10px;
+  width: 100px; }
+  input#save-button:hover {
+    background-color: #eeffff;
+    border-color: black; }
+  input#save-button:active {
+    background-color: #eeffee;
+    border-color: black; }
