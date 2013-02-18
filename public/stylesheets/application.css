@@ -30,8 +30,6 @@ table#data-table {
     background-color: #ffffee; }
     table#data-table tr:hover input {
       background-color: #ffffee; }
-      table#data-table tr:hover input:hover {
-        background-color: #eeffff; }
   table#data-table tr:first-child {
     background-color: white; }
     table#data-table tr:first-child th, table#data-table tr:first-child td {
@@ -39,6 +37,8 @@ table#data-table {
     table#data-table tr:first-child input {
       background-color: white;
       font-weight: bold; }
+  table#data-table tr input:focus {
+    background-color: #eeffff; }
   table#data-table th, table#data-table td {
     border: 1px solid #eeeeee; }
   table#data-table input {
