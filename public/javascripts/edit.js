@@ -86,7 +86,10 @@ $(document).ready(function() {
   $table.delegate("input", "change", renderChart);
 
   $table.delegate("input", "focus", function() {
-    $(this).select();
+    var $input = $(this);
+    setTimeout(function() {
+      $input.select();
+    }, 0);
   });
 
   $table.delegate("input", "keydown", function(e) {
