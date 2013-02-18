@@ -9,6 +9,7 @@ gem "rake"
 gem "sinatra-flash", :require => "sinatra/flash"
 
 # Component requirements
+gem "json"
 gem "sass"
 gem "haml"
 gem "dm-sqlite-adapter"
@@ -18,6 +19,7 @@ gem "dm-migrations"
 gem "dm-constraints"
 gem "dm-aggregates"
 gem "dm-core"
+gem "randy"
 
 # Padrino Stable Gem
 gem "padrino", "0.10.7"

@@ -1,0 +1,14 @@
+!!!
+%head
+  %title= "#{@chart.title} - ChartMaker"
+  = stylesheet_link_tag("application")
+  = javascript_include_tag("http://code.jquery.com/jquery-1.9.1.min.js")
+  = javascript_include_tag("http://code.highcharts.com/highcharts.js")
+  = javascript_include_tag("hightables")
+
+%body
+  %h1= @chart.title
+
+  %div(class="#{@chart.chart_type}-chart" data-source="#data-table")
+
+  = haml(:table)

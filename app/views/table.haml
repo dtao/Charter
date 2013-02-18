@@ -1,0 +1,5 @@
+%table#data-table(style="display: none;")
+  - @chart.parsed_data.each do |row|
+    %tr
+      - row.each do |cell|
+        %td= cell

@@ -12,9 +12,9 @@
     #rendered-chart.line-chart(data-source="#data-table" data-options="getChartOptions")
 
   %section.table-section
-    - form_tag(:index, :id => "data-form") do
+    - form_tag("/", :id => "data-form") do
       = text_field_tag("title", :class => "title empty", :placeholder => "Enter chart title")
-      = text_area_tag("table-html", :id => "table-html", :style => "display: none;")
+      = text_area_tag("table-data", :id => "table-data", :style => "display: none;")
 
       .chart-type-field
         %label Chart Type

@@ -1,6 +1,7 @@
 $(document).ready(function() {
   var chart  = document.getElementById("rendered-chart");
   var $title = $("input.title");
+  var $data  = $("#table-data");
   var $type  = $("#chart-type");
   var $table = $("#data-table");
   var $save  = $("#save-button");
@@ -26,6 +27,18 @@ $(document).ready(function() {
 
   function selectCellBelow(input) {
     selectNeighborCell(input, 1);
+  }
+
+  function getTableData() {
+    var data = [];
+    $("tr", $table).each(function() {
+      var rowData = [];
+      $(this).find("td, th").each(function() {
+        rowData.push($(this).find("input").val());
+      });
+      data.push(rowData);
+    });
+    return data;
   }
 
   $("input.title").change(function() {
@@ -62,6 +75,9 @@ $(document).ready(function() {
   });
 
   $save.click(function() {
+    // Yes, I realize this is a bit ridiculous (HTML -> JSON -> HTML); I will probably change this
+    // to something less insane before long.
+    $data.val(JSON.stringify(getTableData()));
   });
 
   window.getChartOptions = function() {
