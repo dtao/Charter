@@ -16,14 +16,20 @@
       = text_field_tag("title", :class => "title empty", :placeholder => "Enter chart title")
       = text_area_tag("table-data", :id => "table-data", :style => "display: none;")
 
-      .chart-type-field
+      .field
+        %label
+          Optional:
+          %a.add-description(href="javascript:void(0);") Add a description
+        = text_area_tag("description", :id => "description", :style => "display: none;")
+
+      .field
         %label Chart Type
         = select_tag("chart-type", :id => "chart-type", :options => @chart_types)
 
       %table#data-table
         %tr
-          - 2.times do
-            %th <input type="text" />
+          - (1..2).each do |i|
+            %th= text_field_tag(nil, :placeholder => "Column #{i}")
         - 4.times do
           %tr
             - 2.times do

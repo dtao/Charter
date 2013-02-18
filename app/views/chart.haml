@@ -12,3 +12,5 @@
   %div(class="#{@chart.chart_type}-chart" data-source="#data-table")
 
   = haml(:table)
+
+  %p.description= markdown(@chart.description)

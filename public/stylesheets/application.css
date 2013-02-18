@@ -25,14 +25,21 @@ input.title {
   padding: 10px;
   width: 100%; }
   input.title.empty {
-    background-color: #eeffff; }
+    background-color: #eeeeee; }
   input.title:hover {
     background-color: #eeffee; }
   input.title:focus {
     background-color: #ffffee; }
 
-.chart-type-field {
+.field {
   margin-bottom: 20px; }
+
+textarea {
+  box-sizing: border-box;
+  display: block;
+  font-size: 125%;
+  padding: 10px;
+  width: 100%; }
 
 table#data-table {
   border: 2px solid black;
@@ -61,6 +68,8 @@ table#data-table {
         background-color: #eeffee; }
   table#data-table tr input:focus {
     background-color: #eeffff; }
+  table#data-table tr:first-child input:focus {
+    background-color: #ffffee !important; }
   table#data-table th, table#data-table td {
     border: 1px solid #eeeeee;
     text-align: left; }

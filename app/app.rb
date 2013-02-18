@@ -26,7 +26,7 @@ class ChartMaker < Padrino::Application
     chart = Chart.create({
       :chart_type  => params["chart-type"],
       :title       => params["title"],
-      :description => "", # TODO: implement this
+      :description => params["description"],
       :data        => params["table-data"]
     })
 

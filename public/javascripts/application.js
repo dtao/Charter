@@ -2,6 +2,8 @@ $(document).ready(function() {
   var chart  = document.getElementById("rendered-chart");
   var $title = $("input.title");
   var $data  = $("#table-data");
+  var $add   = $("a.add-description");
+  var $desc  = $("#description");
   var $type  = $("#chart-type");
   var $table = $("#data-table");
   var $save  = $("#save-button");
@@ -49,6 +51,19 @@ $(document).ready(function() {
     }
 
     renderChart();
+  });
+
+  $add.click(function() {
+    // How fancy can we get here?
+    $add.fadeOut(function() {
+      var $label = $add.closest("label");
+      $label.slideUp(function() {
+        $label.text("Description");
+        $label.slideDown();
+      });
+    });
+
+    $desc.slideDown();
   });
 
   $type.change(function() {
