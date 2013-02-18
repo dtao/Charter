@@ -6,27 +6,7 @@ $(document).ready(function() {
   var $save  = $("#save-button");
 
   function renderChart() {
-    var chartType = $type.val();
-    var engine = null;
-
-    // TODO: This logic really belongs in HighTables.
-    switch (chartType) {
-      case "line":
-      case "spline":
-      case "area":
-      case "stack":
-        engine = HighTables.LineChart;
-        break;
-      case "bar":
-      case "column":
-        engine = HighTables.BarChart;
-        break;
-      case "pie":
-        engine = HighTables.PieChart;
-        break;
-    }
-
-    engine.renderTo(chart);
+    HighTables.renderChart(chart);
   }
 
   function selectNeighborCell(input, rowOffset) {
