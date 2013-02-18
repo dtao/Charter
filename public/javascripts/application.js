@@ -9,6 +9,8 @@ $(document).ready(function() {
   var $save  = $("#save-button");
 
   function renderChart() {
+    var chartType = $type.val();
+    $(chart).attr("class", "").addClass(chartType + "-chart");
     HighTables.renderChart(chart);
   }
 
@@ -66,11 +68,7 @@ $(document).ready(function() {
     $desc.slideDown();
   });
 
-  $type.change(function() {
-    var chartType = $type.val();
-    $(chart).attr("class", "").addClass(chartType + "-chart");
-    renderChart();
-  });
+  $type.change(renderChart);
 
   $table.delegate("input", "change", renderChart);
 
@@ -102,4 +100,6 @@ $(document).ready(function() {
       }
     };
   };
+
+  renderChart();
 });

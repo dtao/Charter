@@ -9,28 +9,28 @@
 
 %body
   %section.chart-section
-    #rendered-chart.line-chart(data-source="#data-table" data-options="getChartOptions")
+    #rendered-chart(data-source="#data-table" data-options="getChartOptions")
 
   %section.table-section
     - form_tag("/", :id => "data-form") do
-      = text_field_tag("title", :class => "title empty", :placeholder => "Enter chart title")
+      = text_field_tag("title", :class => (@chart.title.blank? ? "title empty" : "title"), :placeholder => "Enter chart title", :value => @chart.title)
       = text_area_tag("table-data", :id => "table-data", :style => "display: none;")
 
       .field
         %label
           Optional:
           %a.add-description(href="javascript:void(0);") Add a description
-        = text_area_tag("description", :id => "description", :style => "display: none;")
+        = text_area_tag("description", :id => "description", :style => "display: none;", :value => @chart.description)
 
       .field
         %label Chart Type
-        = select_tag("chart-type", :id => "chart-type", :options => @chart_types)
+        = select_tag("chart-type", :id => "chart-type", :options => Chart::TYPES, :selected => @chart.chart_type)
 
       %table#data-table
         %tr
           - (1..2).each do |i|
             %th= text_field_tag(nil, :placeholder => "Column #{i}")
-        - 4.times do
+        - 2.times do
           %tr
             - 2.times do
               %td <input type="text" />

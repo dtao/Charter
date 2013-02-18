@@ -1,7 +1,15 @@
 class Chart
   include DataMapper::Resource
 
-  TYPES = ["line", "spline", "area", "stack", "bar", "column", "pie"]
+  TYPES = {
+    "Line"     => "line",
+    "Smoothed" => "spline",
+    "Area"     => "area",
+    "Stack"    => "stack",
+    "Bar"      => "bar",
+    "Column"   => "column",
+    "Pie"      => "pie"
+  }.freeze
 
   property :id,          Serial
   property :token,       String, :unique_index => true
@@ -11,7 +19,7 @@ class Chart
   property :data,        Text
 
   validates_presence_of :chart_type
-  validates_within      :chart_type, :set => TYPES
+  validates_within      :chart_type, :set => TYPES.values
   validates_presence_of :title
   validates_presence_of :data
 
@@ -20,6 +28,10 @@ class Chart
     self.title.try(:strip!)
     self.description.try(:strip!)
     self.data.try(:strip!)
+  end
+
+  def edit_path
+    "/edit/#{self.token}"
   end
 
   def path

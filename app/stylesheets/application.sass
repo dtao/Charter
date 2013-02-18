@@ -3,15 +3,27 @@ $yellow: #ffe
 $green:  #efe
 $gray:   #eee
 
-body
+article
   margin: auto
   width: 75%
 
-h1
+header
   font-family: Helvetica, Arial, sans-serif
-  font-size: 300%
-  font-weight: 300
   text-align: center
+
+  h1
+    font-size: 300%
+    font-weight: 300
+    margin-bottom: 0
+
+  a.edit-link
+    color: darken($blue, 70%)
+    text-decoration: none
+    &:hover
+      color: darken($blue, 60%)
+      text-decoration: underline
+    &:active
+      color: darken($green, 60%)
 
 form#data-form
   font-family: Helvetica, Arial, sans-serif

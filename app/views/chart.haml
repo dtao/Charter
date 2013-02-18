@@ -7,7 +7,10 @@
   = javascript_include_tag("hightables")
 
 %body
-  %h1= @chart.title
+  %article
+    %header
+      %h1= @chart.title
+      %a.edit-link(href="#{@chart.edit_path}") use this as a template for another chart
 
   %div(class="#{@chart.chart_type}-chart" data-source="#data-table")
 

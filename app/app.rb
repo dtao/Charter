@@ -5,15 +5,12 @@ class ChartMaker < Padrino::Application
   register Padrino::Helpers
 
   get "/" do
-    @chart_types = {
-      "Line"     => "line",
-      "Smoothed" => "spline",
-      "Area"     => "area",
-      "Stack"    => "stack",
-      "Bar"      => "bar",
-      "Column"   => "column",
-      "Pie"      => "pie"
-    }
+    @chart = Chart.new
+    render(:index)
+  end
+
+  get "/edit/:token" do |token|
+    @chart = Chart.first(:token => token)
     render(:index)
   end
 
