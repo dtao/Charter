@@ -29,9 +29,11 @@ form#data-form {
   width: 75%; }
 
 input.title {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   border: none;
   border-bottom: 1px solid black;
-  box-sizing: border-box;
   display: block;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 200%;
@@ -51,15 +53,19 @@ input.title {
 
 textarea {
   box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   display: block;
   font-size: 125%;
   padding: 10px;
   width: 100%; }
 
 table#data-table {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   border: 2px solid black;
   border-collapse: collapse;
-  box-sizing: border-box;
   margin-bottom: 20px;
   width: 100%; }
   table#data-table tr:nth-child(even) {
@@ -89,8 +95,10 @@ table#data-table {
     border: 1px solid #eeeeee;
     text-align: left; }
   table#data-table input {
-    border: none;
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: none;
     font-size: 125%;
     padding: 10px;
     width: 100%; }

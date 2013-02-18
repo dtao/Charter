@@ -4,6 +4,11 @@ $yellow: #ffe
 $green:  #efe
 $gray:   #eee
 
+@mixin box-sizing($sizing)
+  box-sizing: $sizing
+  -moz-box-sizing: $sizing
+  -webkit-box-sizing: $sizing
+
 article
   margin: auto
   width: 75%
@@ -37,9 +42,9 @@ form#data-form
   width: 75%
 
 input.title
+  @include box-sizing(border-box)
   border: none
   border-bottom: 1px solid black
-  box-sizing: border-box
   display: block
   font-family: Helvetica, Arial, sans-serif
   font-size: 200%
@@ -61,16 +66,16 @@ input.title
   margin-bottom: 20px
 
 textarea
-  box-sizing: border-box
+  @include box-sizing(border-box)
   display: block
   font-size: 125%
   padding: 10px
   width: 100%
 
 table#data-table
+  @include box-sizing(border-box)
   border: 2px solid black
   border-collapse: collapse
-  box-sizing: border-box
   margin-bottom: 20px
   width: 100%
 
@@ -109,8 +114,8 @@ table#data-table
     text-align: left
 
   input
+    @include box-sizing(border-box)
     border: none
-    box-sizing: border-box
     font-size: 125%
     padding: 10px
     width: 100%
