@@ -9,14 +9,19 @@ header {
     font-size: 300%;
     font-weight: 300;
     margin-bottom: 0; }
-  header a.edit-link {
+  header a {
     color: #008888;
+    display: inline-block;
+    margin-right: 5px;
+    padding-left: 5px;
     text-decoration: none; }
-    header a.edit-link:hover {
+    header a:hover {
       color: #00bbbb;
       text-decoration: underline; }
-    header a.edit-link:active {
+    header a:active {
       color: #00bb00; }
+    header a:last-child {
+      border-left: 1px solid black; }
 
 form#data-form {
   font-family: Helvetica, Arial, sans-serif;

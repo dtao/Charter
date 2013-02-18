@@ -1,43 +1,31 @@
-!!!
-%head
-  %title ChartMaker
-  = stylesheet_link_tag("application")
-  = javascript_include_tag("http://code.jquery.com/jquery-1.9.1.min.js")
-  = javascript_include_tag("http://code.highcharts.com/highcharts.js")
-  = javascript_include_tag("hightables")
+- content_for :javascripts do
   = javascript_include_tag("application")
 
-%body
-  %section.chart-section
-    #rendered-chart(data-source="#data-table" data-options="getChartOptions")
+%section.chart-section
+  #rendered-chart(class="#{@chart.chart_type || 'line'}-chart" data-source="#data-table" data-options="getChartOptions")
 
-  %section.table-section
-    - form_tag("/", :id => "data-form") do
-      = text_field_tag("title", :class => (@chart.title.blank? ? "title empty" : "title"), :placeholder => "Enter chart title", :value => @chart.title)
-      = text_area_tag("table-data", :id => "table-data", :style => "display: none;")
+%section.table-section
+  - form_tag("/", :id => "data-form") do
+    = text_field_tag("title", :class => (@chart.title.blank? ? "title empty" : "title"), :placeholder => "Enter chart title", :value => @chart.title)
+    = text_area_tag("table-data", :id => "table-data", :style => "display: none;")
 
-      .field
-        %label
-          Optional:
-          %a.add-description(href="javascript:void(0);") Add a description
-        = text_area_tag("description", :id => "description", :style => "display: none;", :value => @chart.description)
+    .field
+      %label
+        Optional:
+        %a.add-description(href="javascript:void(0);") Add a description
+      = text_area_tag("description", :id => "description", :style => "display: none;", :value => @chart.description)
 
-      .field
-        %label Chart Type
-        = select_tag("chart-type", :id => "chart-type", :options => Chart::TYPES, :selected => @chart.chart_type)
+    .field
+      %label Chart Type
+      = select_tag("chart-type", :id => "chart-type", :options => Chart::TYPES, :selected => @chart.chart_type)
 
-      %table#data-table
+    %table#data-table
+      %tr
+        - (1..2).each do |i|
+          %th= text_field_tag(nil, :placeholder => "Column #{i}")
+      - 2.times do
         %tr
-          - (1..2).each do |i|
-            %th= text_field_tag(nil, :placeholder => "Column #{i}")
-        - 2.times do
-          %tr
-            - 2.times do
-              %td <input type="text" />
+          - 2.times do
+            %td <input type="text" />
 
-      = submit_tag("Save", :id => "save-button")
-
-  - if flash[:notice]
-    %section.notices
-      .notice= flash[:notice]
-      %a.dismiss(href="javascript:void(0);") OK
+    = submit_tag("Save", :id => "save-button")

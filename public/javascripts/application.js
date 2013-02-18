@@ -9,8 +9,6 @@ $(document).ready(function() {
   var $save  = $("#save-button");
 
   function renderChart() {
-    var chartType = $type.val();
-    $(chart).attr("class", "").addClass(chartType + "-chart");
     HighTables.renderChart(chart);
   }
 
@@ -68,7 +66,11 @@ $(document).ready(function() {
     $desc.slideDown();
   });
 
-  $type.change(renderChart);
+  $type.change(function() {
+    var chartType = $type.val();
+    $(chart).attr("class", "").addClass(chartType + "-chart");
+    renderChart();
+  });
 
   $table.delegate("input", "change", renderChart);
 
@@ -93,6 +95,13 @@ $(document).ready(function() {
     $data.val(JSON.stringify(getTableData()));
   });
 
+  $("a.dismiss").on("click", function() {
+    var $container = $(this).parent();
+    $container.fadeOut(function() {
+      $container.remove();
+    });
+  });
+
   window.getChartOptions = function() {
     return {
       title: {
@@ -100,13 +109,4 @@ $(document).ready(function() {
       }
     };
   };
-
-  renderChart();
-
-  $("a.dismiss").on("click", function() {
-    var $container = $(this).parent();
-    $container.fadeOut(function() {
-      $container.remove();
-    });
-  });
 });

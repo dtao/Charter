@@ -1,0 +1,17 @@
+!!!
+%head
+  %title ChartMaker
+  = stylesheet_link_tag("application")
+  = javascript_include_tag("http://code.jquery.com/jquery-1.9.1.min.js")
+  = javascript_include_tag("http://code.highcharts.com/highcharts.js")
+  = javascript_include_tag("hightables")
+  = yield_content(:javascripts)
+
+%body
+  %article
+    = yield
+
+    - if flash[:notice]
+      %section.notices
+        .notice= flash[:notice]
+        %a.dismiss(href="javascript:void(0);") OK
