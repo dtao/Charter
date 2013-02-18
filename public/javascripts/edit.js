@@ -31,6 +31,17 @@ $(document).ready(function() {
     selectNeighborCell(input, 1);
   }
 
+  function isLastTableRow(input) {
+    return input === $table.find("input:last")[0];
+  }
+
+  function addTableRow() {
+    var $lastRow = $table.find("tr:last").clone();
+    $lastRow.find("input").val("");
+    $lastRow.appendTo($table);
+    $lastRow.find("input:first").focus();
+  }
+
   function getTableData() {
     var data = [];
     $("tr", $table).each(function() {
@@ -80,11 +91,21 @@ $(document).ready(function() {
 
   $table.delegate("input", "keydown", function(e) {
     switch (e.keyCode) {
+    case 9:
+      if (isLastTableRow(this)) {
+        addTableRow();
+        e.preventDefault();
+      }
+      break;
+
     case 38:
       selectCellAbove(this);
+      e.preventDefault();
       break;
+
     case 40:
       selectCellBelow(this);
+      e.preventDefault();
       break;
     }
   });
