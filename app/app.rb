@@ -20,6 +20,7 @@ class ChartMaker < Padrino::Application
 
   get "/:token/:title" do |token, title|
     @chart = Chart.first(:token => token)
+    @title = @chart.title
     render(:chart)
   end
 
