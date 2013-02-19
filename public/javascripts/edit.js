@@ -6,6 +6,7 @@ $(document).ready(function() {
   var $desc  = $("#description");
   var $type  = $("#chart-type");
   var $table = $("#data-table");
+  var $clip  = $("a.delete-last-row");
   var $save  = $("#save-button");
 
   function renderChart() {
@@ -40,6 +41,22 @@ $(document).ready(function() {
     $lastRow.find("input").val("");
     $lastRow.appendTo($table);
     $lastRow.find("input:first").focus();
+    showOrHideDeleteRowLink();
+  }
+
+  function deleteLastRow() {
+    if ($("tr", $table).length > 2) {
+      $table.find("tr:last").remove();
+      showOrHideDeleteRowLink();
+    }
+  }
+
+  function showOrHideDeleteRowLink() {
+    if ($("tr", $table).length > 2) {
+      $clip.show();
+    } else {
+      $clip.hide();
+    }
   }
 
   function getTableData() {
@@ -112,6 +129,8 @@ $(document).ready(function() {
       break;
     }
   });
+
+  $clip.click(deleteLastRow);
 
   $save.click(function() {
     // Yes, I realize this is a bit ridiculous (HTML -> JSON -> HTML); I will probably change this
