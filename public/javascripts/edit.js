@@ -6,7 +6,6 @@ $(document).ready(function() {
   var $desc  = $("#description");
   var $type  = $("#chart-type");
   var $table = $("#data-table");
-  var $clip  = $("a.delete-last-row");
   var $save  = $("#save-button");
 
   function renderChart() {
@@ -37,26 +36,30 @@ $(document).ready(function() {
   }
 
   function addTableRow() {
-    var $lastRow = $table.find("tr:last").clone();
-    $lastRow.find("input").val("");
-    $lastRow.appendTo($table);
-    $lastRow.find("input:first").focus();
-    showOrHideDeleteRowLink();
+    var $newRow = $table.find("tr:last").clone();
+    $newRow.find("input").val("");
+    $newRow.appendTo($table);
+    $newRow.find("input:first").focus();
   }
 
   function deleteLastRow() {
     if ($("tr", $table).length > 2) {
       $table.find("tr:last").remove();
-      showOrHideDeleteRowLink();
     }
   }
 
-  function showOrHideDeleteRowLink() {
-    if ($("tr", $table).length > 2) {
-      $clip.show();
-    } else {
-      $clip.hide();
+  function lastRowIsEmpty() {
+    if ($("tr", $table).length < 4) {
+      return false;
     }
+
+    var $inputs = $table.find("tr:last").find("input");
+    for (var i = 0; i < $inputs.length; ++i) {
+      if ($.trim($inputs[i].value).length > 0) {
+        return false;
+      }
+    }
+    return true;
   }
 
   function getTableData() {
@@ -103,6 +106,7 @@ $(document).ready(function() {
   $table.delegate("input", "change", renderChart);
 
   $table.delegate("input", "focus", function() {
+    tableHasFocus = true;
     var $input = $(this);
     setTimeout(function() {
       $input.select();
@@ -130,7 +134,18 @@ $(document).ready(function() {
     }
   });
 
-  $clip.click(deleteLastRow);
+  var tableHasFocus = false;
+  $table.delegate("input", "blur", function() {
+    tableHasFocus = false;
+    setTimeout(function() {
+      if (!tableHasFocus) {
+        while (lastRowIsEmpty()) {
+          deleteLastRow();
+        }
+        renderChart();
+      }
+    });
+  });
 
   $save.click(function() {
     // Yes, I realize this is a bit ridiculous (HTML -> JSON -> HTML); I will probably change this

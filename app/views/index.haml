@@ -20,14 +20,21 @@
       = select_tag("chart-type", :id => "chart-type", :options => Chart::TYPES, :selected => @chart.chart_type)
 
     %table#data-table
-      %tr
-        - (1..2).each do |i|
-          %th= text_field_tag(nil, :placeholder => "Column #{i}")
-      - 2.times do
+      - if @chart.saved?
         %tr
-          - 2.times do
-            %td <input type="text" />
-
-    %a.delete-last-row(href="javascript:void(0);") delete last row
+          - @chart.parsed_data.first.each do |cell|
+            %th= text_field_tag(nil, :value => cell)
+        - @chart.parsed_data[1..-1].each do |row|
+          %tr
+            - row.each do |cell|
+              %td= text_field_tag(nil, :value => cell)
+      - else
+        %tr
+          - (1..2).each do |i|
+            %th= text_field_tag(nil, :placeholder => "Column #{i}")
+        - 2.times do
+          %tr
+            - 2.times do
+              %td <input type="text" />
 
     = submit_tag("Save", :id => "save-button")
