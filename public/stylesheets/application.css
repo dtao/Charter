@@ -1,9 +1,13 @@
 article {
   margin: auto;
-  width: 75%; }
+  width: 800px; }
 
+@media all and (max-width: 799px) {
+  article {
+    width: 100%; } }
 header {
   font-family: Helvetica, Arial, sans-serif;
+  margin-bottom: 20px;
   text-align: center; }
   header h1 {
     font-size: 300%;

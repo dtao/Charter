@@ -25,7 +25,6 @@ gem "randy"
 # Padrino Stable Gem
 gem "padrino", "0.10.7"
 
-
 group :production do
   gem "pg"
   gem "dm-postgres-adapter"
