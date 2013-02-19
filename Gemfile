@@ -13,7 +13,6 @@ gem "json"
 gem "sass"
 gem "haml"
 gem "redcarpet"
-gem "dm-sqlite-adapter"
 gem "dm-validations"
 gem "dm-timestamps"
 gem "dm-migrations"
@@ -25,3 +24,13 @@ gem "randy"
 
 # Padrino Stable Gem
 gem "padrino", "0.10.7"
+
+
+group :production do
+  gem "pg"
+  gem "dm-postgres-adapter"
+end
+
+group :development do
+  gem "dm-sqlite-adapter"
+end
