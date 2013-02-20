@@ -178,7 +178,7 @@ $(document).ready(function() {
   $table.delegate("input", "keydown", function(e) {
     switch (e.keyCode) {
     case 9:
-      if (isLastTableRow(this)) {
+      if (isLastTableRow(this) && !e.shiftKey) {
         addTableRow();
         e.preventDefault();
       }
