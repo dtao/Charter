@@ -166,6 +166,10 @@ $(document).ready(function() {
       }
       break;
 
+    case 27:
+      $(this).blur();
+      break;
+
     case 38:
       selectCellAbove(this);
       e.preventDefault();
