@@ -188,13 +188,14 @@ footer
   .instructions
     background-color: black
     color: white
+    display: none
     font-family: Helvetica, Arial, sans-serif
     font-size: 24px
     opacity: 0.5
     padding: 10px
     text-align: center
-    &:empty
-      display: none
+    &.visible
+      display: block
 
     em
       color: lighten($darkRed, 10%)

@@ -1,15 +1,16 @@
 $(document).ready(function() {
-  var chart  = document.getElementById("rendered-chart");
-  var $title = $("input.title");
-  var $data  = $("#table-data");
-  var $add   = $("a.add-description");
-  var $desc  = $("#description");
-  var $type  = $("#chart-type");
-  var $table = $("#data-table");
-  var $plus  = $("a.add-column");
-  var $minus = $("a.delete-column");
-  var $save  = $("#save-button");
-  var $help  = $(".instructions");
+  var chart    = document.getElementById("rendered-chart");
+  var $title   = $("input.title");
+  var $data    = $("#table-data");
+  var $add     = $("a.add-description");
+  var $desc    = $("#description");
+  var $type    = $("#chart-type");
+  var $table   = $("#data-table");
+  var $actions = $(".table-actions");
+  var $plus    = $("a.add-column");
+  var $minus   = $("a.delete-column");
+  var $save    = $("#save-button");
+  var $help    = $(".instructions");
 
   function renderChart() {
     HighTables.renderChart(chart);
@@ -109,6 +110,10 @@ $(document).ready(function() {
     return $.trim($input.val()).length === 0;
   }
 
+  function lastCellHasFocus() {
+    return $table.find("tr:last").find("input:last").is(":focus");
+  }
+
   function getTableData() {
     var data = [];
     $("tr", $table).each(function() {
@@ -121,16 +126,13 @@ $(document).ready(function() {
     return data;
   }
 
-  function showInstructions() {
-    $help.html(
-      "Use <em>&uarr;</em>, <em>&darr;</em>, and <em>tab</em> to navigate cells. " +
-      "Tab on the last cell create a new row. " +
-      "The <em>+</em> and <em>-</em> buttons add and delete columns."
-    );
+  function showInstructions(section) {
+    hideInstructions();
+    $(".instructions." + section).addClass("visible");
   }
 
   function hideInstructions() {
-    $help.text("");
+    $help.removeClass("visible");
   }
 
   function afterEventLoop(callback) {
@@ -172,7 +174,11 @@ $(document).ready(function() {
     afterEventLoop(function() {
       $input.select();
     });
-    showInstructions();
+    if (isLastTableRow(this) && isRightmostCell(this)) {
+      showInstructions("last-cell");
+    } else {
+      showInstructions("table");
+    }
   });
 
   $table.delegate("input", "keydown", function(e) {
@@ -212,6 +218,22 @@ $(document).ready(function() {
         hideInstructions();
       }
     });
+  });
+
+  $actions.mouseover(function() {
+    showInstructions("columns");
+  });
+
+  $actions.mouseout(function() {
+    if (tableHasFocus) {
+      if (lastCellHasFocus()) {
+        showInstructions("last-cell");
+      } else {
+        showInstructions("table");
+      }
+    } else {
+      hideInstructions();
+    }
   });
 
   $plus.click(addTableColumn);

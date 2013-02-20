@@ -162,13 +162,14 @@ footer {
   footer .instructions {
     background-color: black;
     color: white;
+    display: none;
     font-family: Helvetica, Arial, sans-serif;
-    font-size: 28px;
+    font-size: 24px;
     opacity: 0.5;
     padding: 10px;
     text-align: center; }
-    footer .instructions:empty {
-      display: none; }
+    footer .instructions.visible {
+      display: block; }
     footer .instructions em {
       color: #bb0000;
       font-style: normal; }
