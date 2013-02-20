@@ -10,12 +10,12 @@ class ChartMaker < Padrino::Application
 
   get "/" do
     @chart = Chart.new
-    render(:index)
+    render(:edit)
   end
 
   get "/edit/:token" do |token|
     @chart = Chart.first(:token => token)
-    render(:index)
+    render(:edit)
   end
 
   get "/embed/:token" do |token|

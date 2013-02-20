@@ -1,0 +1,43 @@
+- content_for :javascripts do
+  = javascript_include_tag("edit")
+
+- form_tag("/", :id => "data-form") do
+  = text_field_tag("title", :class => (@chart.title.blank? ? "title empty" : "title"), :placeholder => "Enter chart title", :value => @chart.title)
+
+  #rendered-chart(class="#{@chart.chart_type || 'line'}-chart" data-source="#data-table" data-options="getChartOptions")
+
+  = text_area_tag("table-data", :id => "table-data", :style => "display: none;")
+
+  .field
+    %label
+      Optional:
+      %a.add-description(href="javascript:void(0);") Add a description
+    = text_area_tag("description", :id => "description", :style => "display: none;", :value => @chart.description)
+
+  .field
+    %label Chart Type
+    = select_tag("chart-type", :id => "chart-type", :options => Chart::TYPES, :selected => @chart.chart_type)
+
+  %table#data-table
+    - if @chart.saved?
+      %tr
+        - @chart.parsed_data.first.each do |cell|
+          %th= text_field_tag(nil, :value => cell)
+      - @chart.parsed_data[1..-1].each do |row|
+        %tr
+          - row.each do |cell|
+            %td= text_field_tag(nil, :value => cell)
+    - else
+      %tr
+        - (1..2).each do |i|
+          %th= text_field_tag(nil, :placeholder => "Column #{i}")
+      - 2.times do
+        %tr
+          - 2.times do
+            %td <input type="text" />
+
+  .table-actions
+    %a.add-column(href="javascript:void(0);") +
+    %a.delete-column(href="javascript:void(0);") -
+
+  = submit_tag("Save", :id => "save-button")

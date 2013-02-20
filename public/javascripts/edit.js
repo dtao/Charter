@@ -120,14 +120,12 @@ $(document).ready(function() {
     return data;
   }
 
-  $("input.title").change(function() {
+  $title.change(function() {
     if ($.trim($title.val()) === "") {
       $title.addClass("empty");
     } else {
       $title.removeClass("empty");
     }
-
-    renderChart();
   });
 
   $add.click(function() {
@@ -209,9 +207,6 @@ $(document).ready(function() {
 
   window.getChartOptions = function() {
     return {
-      title: {
-        text: $title.val()
-      },
       plotOptions: {
         series: {
           animation: false
