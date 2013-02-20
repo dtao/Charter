@@ -37,4 +37,8 @@
             - 2.times do
               %td <input type="text" />
 
+    .table-actions
+      %a.add-column(href="javascript:void(0);") +
+      %a.delete-column(href="javascript:void(0);") -
+
     = submit_tag("Save", :id => "save-button")

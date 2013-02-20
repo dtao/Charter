@@ -6,6 +6,8 @@ $(document).ready(function() {
   var $desc  = $("#description");
   var $type  = $("#chart-type");
   var $table = $("#data-table");
+  var $plus  = $("a.add-column");
+  var $minus = $("a.delete-column");
   var $save  = $("#save-button");
 
   function renderChart() {
@@ -60,6 +62,50 @@ $(document).ready(function() {
       }
     }
     return true;
+  }
+
+  function isRightmostCell(input) {
+    return input === $(input).closest("tr").find("input:last")[0];
+  }
+
+  function addTableColumn() {
+    var $firstRow   = $table.find("tr:first");
+    var $newCell    = $firstRow.find("th:last").clone().appendTo($firstRow);
+    var placeholder = "Column " + $("th", $firstRow).length;
+    $newCell.find("input").val("").attr("placeholder", placeholder);
+
+    $table.find("tr:gt(0)").each(function() {
+      var $row  = $(this);
+      var $cell = $row.find("td:last").clone();
+      $("input", $cell).val("");
+      $cell.appendTo($row);
+    });
+  }
+
+  function deleteLastColumn() {
+    $("tr", $table).each(function() {
+      $(this).find("td:last,th:last").remove();
+    });
+  }
+
+  function lastColumnIsEmpty() {
+    var $firstRow = $table.find("tr:first");
+    if ($("th", $firstRow).length < 3) {
+      return false;
+    }
+
+    var $rows = $table.find("tr");
+    for (var i = 0; i < $rows.length; ++i) {
+      if (!lastCellIsEmpty($rows[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function lastCellIsEmpty(row) {
+    var $input = $(row).find("td:last,th:last").find("input");
+    return $.trim($input.val()).length === 0;
   }
 
   function getTableData() {
@@ -145,6 +191,14 @@ $(document).ready(function() {
         renderChart();
       }
     });
+  });
+
+  $plus.click(addTableColumn);
+
+  $minus.click(function() {
+    if (lastColumnIsEmpty()) {
+      deleteLastColumn();
+    }
   });
 
   $save.click(function() {
