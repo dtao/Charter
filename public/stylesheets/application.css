@@ -154,6 +154,25 @@ input#save-button {
   .description p:last-child {
     margin-bottom: 0; }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+  footer .instructions {
+    background-color: black;
+    color: white;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 28px;
+    opacity: 0.5;
+    padding: 10px;
+    text-align: center; }
+    footer .instructions:empty {
+      display: none; }
+    footer .instructions em {
+      color: #bb0000;
+      font-style: normal; }
+
 .notices {
   position: fixed;
   top: 25%;

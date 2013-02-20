@@ -9,6 +9,7 @@ $(document).ready(function() {
   var $plus  = $("a.add-column");
   var $minus = $("a.delete-column");
   var $save  = $("#save-button");
+  var $help  = $(".instructions");
 
   function renderChart() {
     HighTables.renderChart(chart);
@@ -120,6 +121,22 @@ $(document).ready(function() {
     return data;
   }
 
+  function showInstructions() {
+    $help.html(
+      "Use <em>&uarr;</em>, <em>&darr;</em>, and <em>tab</em> to navigate cells. " +
+      "Tab on the last cell create a new row. " +
+      "The <em>+</em> and <em>-</em> buttons add and delete columns."
+    );
+  }
+
+  function hideInstructions() {
+    $help.text("");
+  }
+
+  function afterEventLoop(callback) {
+    setTimeout(callback, 0);
+  }
+
   $title.change(function() {
     if ($.trim($title.val()) === "") {
       $title.addClass("empty");
@@ -152,9 +169,10 @@ $(document).ready(function() {
   $table.delegate("input", "focus", function() {
     tableHasFocus = true;
     var $input = $(this);
-    setTimeout(function() {
+    afterEventLoop(function() {
       $input.select();
-    }, 0);
+    });
+    showInstructions();
   });
 
   $table.delegate("input", "keydown", function(e) {
@@ -185,12 +203,13 @@ $(document).ready(function() {
   var tableHasFocus = false;
   $table.delegate("input", "blur", function() {
     tableHasFocus = false;
-    setTimeout(function() {
+    afterEventLoop(function() {
       if (!tableHasFocus) {
         while (lastRowIsEmpty()) {
           deleteLastRow();
         }
         renderChart();
+        hideInstructions();
       }
     });
   });
