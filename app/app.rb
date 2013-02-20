@@ -1,4 +1,4 @@
-class ChartMaker < Padrino::Application
+class Charter < Padrino::Application
   register SassInitializer
   register Padrino::Rendering
   register Padrino::Mailer

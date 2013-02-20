@@ -1,6 +1,9 @@
 - content_for :javascripts do
   = javascript_include_tag("edit")
 
+%header
+  %h1 Charter
+
 - form_tag("/", :id => "data-form") do
   = text_field_tag("title", :class => (@chart.title.blank? ? "title empty" : "title"), :placeholder => "Enter chart title", :value => @chart.title)
 

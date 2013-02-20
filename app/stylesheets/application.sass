@@ -31,7 +31,7 @@ header
   text-align: center
 
   h1
-    font-size: 300%
+    font-size: 400%
     font-weight: 300
     margin-bottom: 0
 
@@ -42,7 +42,7 @@ header
     padding-left: 5px
     text-decoration: none
     &:hover
-      color: lighten($blue, 60%)
+      color: lighten($darkBlue, 10%)
       text-decoration: underline
     &:active
       color: $darkGreen
@@ -76,6 +76,12 @@ input.title
 
 .field
   margin-bottom: 20px
+
+a.add-description
+  color: $darkBlue
+  text-decoration: none
+  &:hover
+    color: lighten($darkBlue, 10%)
 
 textarea
   @include box-sizing(border-box)

@@ -15,7 +15,7 @@ header {
   margin-bottom: 20px;
   text-align: center; }
   header h1 {
-    font-size: 300%;
+    font-size: 400%;
     font-weight: 300;
     margin-bottom: 0; }
   header a {
@@ -25,7 +25,7 @@ header {
     padding-left: 5px;
     text-decoration: none; }
     header a:hover {
-      color: white;
+      color: #00bbbb;
       text-decoration: underline; }
     header a:active {
       color: #00bb00; }
@@ -58,6 +58,12 @@ input.title {
 
 .field {
   margin-bottom: 20px; }
+
+a.add-description {
+  color: #008888;
+  text-decoration: none; }
+  a.add-description:hover {
+    color: #00bbbb; }
 
 textarea {
   box-sizing: border-box;
