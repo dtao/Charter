@@ -157,6 +157,11 @@ $(document).ready(function() {
     return {
       title: {
         text: $title.val()
+      },
+      plotOptions: {
+        series: {
+          animation: false
+        }
       }
     };
   };
