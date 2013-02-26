@@ -10,4 +10,4 @@
   %div(class="#{@chart.chart_type}-chart" data-source="#data-table")
   = haml(:table, :layout => false)
   .caption
-    %a(href="#{@chart.url}")= @chart.title
+    %a(href="#{@chart.url}" target="_blank")= @chart.title
