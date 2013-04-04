@@ -4,6 +4,9 @@
 %header
   %h1 Charter
 
+  %a(href="https://github.com/dtao/Charter")
+    %img(style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub")
+
 - form_tag("/", :id => "data-form") do
   = text_field_tag("title", :class => (@chart.title.blank? ? "title empty" : "title"), :placeholder => "Enter chart title", :value => @chart.title)
 
