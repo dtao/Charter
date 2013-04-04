@@ -1,16 +1,18 @@
 $(document).ready(function() {
-  var chart    = document.getElementById("rendered-chart");
-  var $title   = $("input.title");
-  var $data    = $("#table-data");
-  var $add     = $("a.add-description");
-  var $desc    = $("#description");
-  var $type    = $("#chart-type");
-  var $table   = $("#data-table");
-  var $actions = $(".table-actions");
-  var $plus    = $("a.add-column");
-  var $minus   = $("a.delete-column");
-  var $save    = $("#save-button");
-  var $help    = $(".instructions");
+  var chart           = document.getElementById("rendered-chart");
+  var $title          = $("input.title");
+  var $data           = $("#table-data");
+  var $addDescription = $("a.add-description");
+  var $desc           = $("#description");
+  var $type           = $("#chart-type");
+  var $table          = $("#data-table");
+  var $actions        = $(".table-actions");
+  var $addColumn      = $("a.add-column");
+  var $deleteColumn   = $("a.delete-column");
+  var $addRow         = $("a.add-row");
+  var $deleteRow      = $("a.delete-row");
+  var $save           = $("#save-button");
+  var $help           = $(".instructions");
 
   function renderChart() {
     HighTables.renderChart(chart);
@@ -39,11 +41,13 @@ $(document).ready(function() {
     return input === $table.find("input:last")[0];
   }
 
-  function addTableRow() {
+  function addTableRow(focus) {
     var $newRow = $table.find("tr:last").clone();
     $newRow.find("input").val("");
     $newRow.appendTo($table);
-    $newRow.find("input:first").focus();
+    if (focus) {
+      $newRow.find("input:first").focus();
+    }
   }
 
   function deleteLastRow() {
@@ -147,10 +151,10 @@ $(document).ready(function() {
     }
   });
 
-  $add.click(function() {
+  $addDescription.click(function() {
     // How fancy can we get here?
-    $add.fadeOut(function() {
-      var $label = $add.closest("label");
+    $addDescription.fadeOut(function() {
+      var $label = $addDescription.closest("label");
       $label.slideUp(function() {
         $label.text("Description");
         $label.slideDown();
@@ -185,7 +189,7 @@ $(document).ready(function() {
     switch (e.keyCode) {
     case 9:
       if (isLastTableRow(this) && !e.shiftKey) {
-        addTableRow();
+        addTableRow(true);
         e.preventDefault();
       }
       break;
@@ -220,27 +224,21 @@ $(document).ready(function() {
     });
   });
 
-  $actions.mouseover(function() {
-    showInstructions("columns");
-  });
+  $addColumn.click(addTableColumn);
 
-  $actions.mouseout(function() {
-    if (tableHasFocus) {
-      if (lastCellHasFocus()) {
-        showInstructions("last-cell");
-      } else {
-        showInstructions("table");
-      }
-    } else {
-      hideInstructions();
+  $deleteColumn.click(function() {
+    if (lastColumnIsEmpty()) {
+      deleteLastColumn();
     }
   });
 
-  $plus.click(addTableColumn);
+  $addRow.click(function() {
+    addTableRow(false);
+  });
 
-  $minus.click(function() {
-    if (lastColumnIsEmpty()) {
-      deleteLastColumn();
+  $deleteRow.click(function() {
+    if (lastRowIsEmpty()) {
+      deleteLastRow();
     }
   });
 

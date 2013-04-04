@@ -2,7 +2,7 @@
   = javascript_include_tag("edit")
 
 %header
-  %h1 Charter
+  %h1 <span>Charter</span>
 
   %a(href="https://github.com/dtao/Charter")
     %img(style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub")
@@ -43,8 +43,14 @@
             %td <input type="text" />
 
   .table-actions
-    %a.add-column(href="javascript:void(0);") +
-    %a.delete-column(href="javascript:void(0);") -
+    %a.add-row(href="javascript:void(0);")
+      %span.tooltip <em>Add</em> a row to the table.
+    %a.delete-row(href="javascript:void(0);")
+      %span.tooltip <em>Delete</em> a row from the table.
+    %a.add-column(href="javascript:void(0);")
+      %span.tooltip <em>Add</em> a column to the table.
+    %a.delete-column(href="javascript:void(0);")
+      %span.tooltip <em>Delete</em> a column from the table.
 
   = submit_tag("Save", :id => "save-button")
 
@@ -53,5 +59,3 @@
     Use <em>Up</em>, <em>Down</em>, <em>Tab</em> and <em>Shift+Tab</em> to navigate cells.
   .instructions.last-cell
     Press <em>Tab</em> to create a new row.
-  .instructions.columns
-    Click <em>+</em> and <em>-</em> to add and delete columns.

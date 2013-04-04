@@ -18,6 +18,9 @@ header {
     font-size: 400%;
     font-weight: 300;
     margin-bottom: 0; }
+    header h1 span {
+      background: url("/images/line-chart.png") no-repeat left center;
+      padding-left: 64px; }
   header a {
     color: #008888;
     display: inline-block;
@@ -124,12 +127,50 @@ table#data-table {
   .table-actions a {
     color: #008888;
     display: inline-block;
+    height: 48px;
+    width: 48px;
     font-size: 125%;
     font-weight: bold;
     margin-left: 5px;
     text-decoration: none; }
-    .table-actions a:hover {
-      color: #00bbbb; }
+    .table-actions a.add-row {
+      background: url("/images/add-row.gif"); }
+    .table-actions a.delete-row {
+      background: url("/images/delete-row.gif"); }
+    .table-actions a.add-column {
+      background: url("/images/add-column.gif"); }
+    .table-actions a.delete-column {
+      background: url("/images/delete-column.gif"); }
+    .table-actions a .tooltip {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50px;
+      color: white;
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 24px;
+      line-height: 50px;
+      text-align: center;
+      z-index: 1;
+      display: none; }
+      .table-actions a .tooltip:before {
+        content: "";
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        display: block;
+        background-color: black;
+        opacity: 0.5;
+        filter: alpha(opacity=50);
+        z-index: -1; }
+      .table-actions a .tooltip em {
+        color: #ff8888;
+        font-style: normal; }
+    .table-actions a:hover .tooltip {
+      display: block; }
 
 input#save-button {
   background-color: #aeaeae;
@@ -154,25 +195,36 @@ input#save-button {
   .description p:last-child {
     margin-bottom: 0; }
 
-footer {
+footer .instructions {
   position: fixed;
   bottom: 0;
   left: 0;
-  right: 0; }
-  footer .instructions {
+  right: 0;
+  height: 50px;
+  color: white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  line-height: 50px;
+  text-align: center;
+  z-index: 1;
+  display: none; }
+  footer .instructions:before {
+    content: "";
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    display: block;
     background-color: black;
-    color: white;
-    display: none;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 24px;
     opacity: 0.5;
-    padding: 10px;
-    text-align: center; }
-    footer .instructions.visible {
-      display: block; }
-    footer .instructions em {
-      color: #bb0000;
-      font-style: normal; }
+    filter: alpha(opacity=50);
+    z-index: -1; }
+  footer .instructions em {
+    color: #ff8888;
+    font-style: normal; }
+  footer .instructions.visible {
+    display: block; }
 
 .notices {
   position: fixed;
