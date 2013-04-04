@@ -62,7 +62,7 @@ GEM
       data_objects (= 0.10.12)
     do_sqlite3 (0.10.12)
       data_objects (= 0.10.12)
-    eventmachine (1.0.0)
+    eventmachine (1.0.3)
     fastercsv (1.5.5)
     foreman (0.61.0)
       thor (>= 0.13.6)
