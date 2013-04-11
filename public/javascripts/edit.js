@@ -1,7 +1,15 @@
 $(document).ready(function() {
   var chart           = document.getElementById("rendered-chart");
   var options         = {
-                          plotOptions: {},
+                          plotOptions: {
+                            series: {
+                              marker: {
+                                states: {
+                                  hover: {}
+                                }
+                              }
+                            }
+                          },
                           xAxis: {},
                           yAxis: {}
                         };
@@ -14,6 +22,7 @@ $(document).ready(function() {
   var $table          = $("#data-table");
   var $actions        = $(".table-actions");
   var $dataPoints     = $("#show-data-points");
+  var $tooltips       = $("#show-tooltips");
   var $xaxis          = $("#include-x-axis");
   var $yaxis          = $("#include-y-axis");
   var $gridlines      = $("#include-grid-lines");
@@ -182,11 +191,13 @@ $(document).ready(function() {
   });
 
   $dataPoints.change(function() {
-    options.plotOptions = this.checked ? {} : {
-      series: {
-        marker: { enabled: false }
-      }
-    };
+    options.plotOptions.series.marker.enabled = this.checked;
+    renderChart();
+  });
+
+  $tooltips.change(function() {
+    options.tooltip = { enabled: this.checked };
+    options.plotOptions.series.marker.states.hover.enabled = this.checked;
     renderChart();
   });
 
