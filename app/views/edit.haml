@@ -13,6 +13,7 @@
   #rendered-chart(class="#{@chart.chart_type || 'line'}-chart" data-source="#data-table" data-options="getChartOptions")
 
   = text_area_tag("table-data", :id => "table-data", :style => "display: none;")
+  = text_area_tag("chart-options", :id => "chart-options", :style => "display: none;")
 
   .field
     %label

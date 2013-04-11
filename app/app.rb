@@ -23,6 +23,17 @@ class Charter < Padrino::Application
     render(:embed, :layout => false)
   end
 
+  get "/options/*.js" do |params|
+    chart = Chart.first(:token => params.first.chomp(".js"))
+
+    content_type "text/javascript"
+    <<-EOJS
+      function getChartOptions() {
+        return #{chart.options};
+      }
+    EOJS
+  end
+
   get "/:token/:title" do |token, title|
     @chart = Chart.first(:token => token)
     @title = @chart.title
@@ -34,7 +45,8 @@ class Charter < Padrino::Application
       :chart_type  => params["chart-type"],
       :title       => params["title"],
       :description => params["description"],
-      :data        => params["table-data"]
+      :data        => params["table-data"],
+      :options     => params["chart-options"]
     })
 
     redirect(chart.path)

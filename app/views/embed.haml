@@ -5,9 +5,10 @@
   = javascript_include_tag("http://code.jquery.com/jquery-1.9.1.min.js")
   = javascript_include_tag("http://code.highcharts.com/highcharts.js")
   = javascript_include_tag("hightables")
+  = javascript_include_tag(@chart.options_path)
 
 %body
-  %div(class="#{@chart.chart_type}-chart" data-source="#data-table")
+  %div(class="#{@chart.chart_type}-chart" data-source="#data-table" data-options="getChartOptions")
   = haml(:table, :layout => false)
   .caption
     %a(href="#{@chart.url}" target="_blank")= @chart.title

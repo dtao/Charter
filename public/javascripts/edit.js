@@ -7,6 +7,7 @@ $(document).ready(function() {
                         };
   var $title          = $("input.title");
   var $data           = $("#table-data");
+  var $options        = $("#chart-options");
   var $addDescription = $("a.add-description");
   var $desc           = $("#description");
   var $type           = $("#chart-type");
@@ -289,14 +290,13 @@ $(document).ready(function() {
     // Yes, I realize this is a bit ridiculous (HTML -> JSON -> HTML); I will probably change this
     // to something less insane before long.
     $data.val(JSON.stringify(getTableData()));
+    $options.val(JSON.stringify(getChartOptions()));
   });
 
   window.getChartOptions = function() {
     return $.extend(true, {
       plotOptions: {
-        series: {
-          animation: false
-        }
+        series: { animation: false }
       }
     }, options);
   };
