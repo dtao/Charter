@@ -24,6 +24,23 @@
     %label Chart Type
     = select_tag("chart-type", :id => "chart-type", :options => Chart::TYPES, :selected => @chart.chart_type)
 
+  .field
+    %label
+      = check_box_tag("show-data-points", :id => "show-data-points", :checked => true)
+      Show data points
+    %label
+      = check_box_tag("include-x-axis", :id => "include-x-axis", :checked => true)
+      Include X-axis
+    %label
+      = check_box_tag("include-y-axis", :id => "include-y-axis", :checked => true)
+      Include Y-axis
+    %label
+      = check_box_tag("include-grid-lines", :id => "include-grid-lines", :checked => true)
+      Include grid lines
+    %label
+      = check_box_tag("include-legend", :id => "include-legend", :checked => true)
+      Include legend
+
   %table#data-table
     - if @chart.saved?
       %tr

@@ -1,5 +1,10 @@
 $(document).ready(function() {
   var chart           = document.getElementById("rendered-chart");
+  var options         = {
+                          plotOptions: {},
+                          xAxis: {},
+                          yAxis: {}
+                        };
   var $title          = $("input.title");
   var $data           = $("#table-data");
   var $addDescription = $("a.add-description");
@@ -7,6 +12,11 @@ $(document).ready(function() {
   var $type           = $("#chart-type");
   var $table          = $("#data-table");
   var $actions        = $(".table-actions");
+  var $dataPoints     = $("#show-data-points");
+  var $xaxis          = $("#include-x-axis");
+  var $yaxis          = $("#include-y-axis");
+  var $gridlines      = $("#include-grid-lines");
+  var $legend         = $("#include-legend");
   var $addColumn      = $("a.add-column");
   var $deleteColumn   = $("a.delete-column");
   var $addRow         = $("a.add-row");
@@ -170,6 +180,39 @@ $(document).ready(function() {
     renderChart();
   });
 
+  $dataPoints.change(function() {
+    options.plotOptions = this.checked ? {} : {
+      series: {
+        marker: { enabled: false }
+      }
+    };
+    renderChart();
+  });
+
+  $xaxis.change(function() {
+    options.xAxis = this.checked ? {} : {
+      lineWidth: 0,
+      labels: { enabled: false },
+      tickLength: 0
+    };
+    renderChart();
+  });
+
+  $yaxis.change(function() {
+    options.yAxis.labels = { enabled: this.checked };
+    renderChart();
+  });
+
+  $gridlines.change(function() {
+    options.yAxis.gridLineWidth = this.checked ? 1 : 0;
+    renderChart();
+  });
+
+  $legend.change(function() {
+    options.legend = { enabled: this.checked };
+    renderChart();
+  });
+
   $table.delegate("input", "change", renderChart);
 
   $table.delegate("input", "focus", function() {
@@ -249,12 +292,12 @@ $(document).ready(function() {
   });
 
   window.getChartOptions = function() {
-    return {
+    return $.extend(true, {
       plotOptions: {
         series: {
           animation: false
         }
       }
-    };
+    }, options);
   };
 });
