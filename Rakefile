@@ -7,7 +7,7 @@ namespace :db do
   end
 
   desc "Update the database"
-  task :udpate do
+  task :update do
     DataMapper.auto_upgrade!
   end
 end
