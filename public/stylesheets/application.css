@@ -39,6 +39,9 @@ form#data-form {
   font-family: Helvetica, Arial, sans-serif;
   margin: auto; }
 
+#rendered-chart {
+  height: 400px; }
+
 input.title {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
