@@ -11,7 +11,9 @@ $(document).ready(function() {
                             }
                           },
                           xAxis: {},
-                          yAxis: {}
+                          yAxis: {
+                            min: 0
+                          }
                         };
   var $title          = $("input.title");
   var $data           = $("#table-data");
@@ -21,10 +23,12 @@ $(document).ready(function() {
   var $type           = $("#chart-type");
   var $table          = $("#data-table");
   var $actions        = $(".table-actions");
+  var $logScale       = $("#logarithmic");
   var $dataPoints     = $("#show-data-points");
   var $tooltips       = $("#show-tooltips");
   var $xaxis          = $("#include-x-axis");
   var $yaxis          = $("#include-y-axis");
+  var $zeroYMin       = $("#zero-y-min");
   var $gridlines      = $("#include-grid-lines");
   var $legend         = $("#include-legend");
   var $addColumn      = $("a.add-column");
@@ -190,6 +194,11 @@ $(document).ready(function() {
     renderChart();
   });
 
+  $logScale.change(function() {
+    options.yAxis.type = this.checked ? "logarithmic" : undefined;
+    renderChart();
+  });
+
   $dataPoints.change(function() {
     options.plotOptions.series.marker.enabled = this.checked;
     renderChart();
@@ -212,6 +221,11 @@ $(document).ready(function() {
 
   $yaxis.change(function() {
     options.yAxis.labels = { enabled: this.checked };
+    renderChart();
+  });
+
+  $zeroYMin.change(function() {
+    options.yAxis.min = this.checked ? 0 : null;
     renderChart();
   });
 

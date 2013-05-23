@@ -27,6 +27,9 @@
 
   .field
     %label
+      = check_box_tag("logarithmic", :id => "logarithmic", :checked => false)
+      Logarithmic
+    %label
       = check_box_tag("show-data-points", :id => "show-data-points", :checked => true)
       Show data points
     %label
@@ -38,6 +41,9 @@
     %label
       = check_box_tag("include-y-axis", :id => "include-y-axis", :checked => true)
       Include Y-axis
+    %label
+      = check_box_tag("zero-y-min", :id => "zero-y-min", :checked => true)
+      Force Y-min to zero
     %label
       = check_box_tag("include-grid-lines", :id => "include-grid-lines", :checked => true)
       Include grid lines
